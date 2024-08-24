@@ -1,3 +1,5 @@
 * text=auto
-/dist
-/node_modules
+# Specific file types
+*.js text eol=lf
+*.ts text eol=lf
+*.html text eol=lf
