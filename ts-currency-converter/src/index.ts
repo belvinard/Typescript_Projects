@@ -63,15 +63,24 @@ const askQuestion = (query: string): Promise<string> => {
 };
 
 (async function main() {
-    // Get user input
-    const amount = parseFloat(await askQuestion("Enter amount: "));
-    const fromCurrency = await askQuestion("Enter source currency (USD, EUR, JPY, FCFA): ");
-    const toCurrency = await askQuestion("Enter target currency (USD, EUR, JPY, FCFA): ");
+    try {
+        console.log("Currency converter program started...");
 
-    // Perform the conversion
-    const convertedAmount = convertCurrency(amount, fromCurrency, toCurrency);
-    displayResult(amount, fromCurrency, toCurrency, convertedAmount);
+        // Get user input
+        const amount = parseFloat(await askQuestion("Enter amount: "));
+        console.log(`You entered amount: ${amount}`);
+        const fromCurrency = await askQuestion("Enter source currency (USD, EUR, JPY, FCFA): ");
+        console.log(`You entered source currency: ${fromCurrency}`);
+        const toCurrency = await askQuestion("Enter target currency (USD, EUR, JPY, FCFA): ");
+        console.log(`You entered target currency: ${toCurrency}`);
 
-    // Close the readline interface
-    rl.close();
+        // Perform the conversion
+        const convertedAmount = convertCurrency(amount, fromCurrency, toCurrency);
+        displayResult(amount, fromCurrency, toCurrency, convertedAmount);
+    } catch (error) {
+        console.error("An error occurred: ", error);
+    } finally {
+        // Close the readline interface
+        rl.close();
+    }
 })();
